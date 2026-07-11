@@ -190,11 +190,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
----
 
 <div align="center">
 Built with ❤️ for 463 million people living with diabetes worldwide.
