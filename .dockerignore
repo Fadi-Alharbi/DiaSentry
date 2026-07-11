@@ -1,0 +1,27 @@
+# Security & Secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+
+# Build & Dist
+frontend/dist/
+dist/
+build/
+
+# IDE & System
+.vscode/
+.idea/
+.gemini/
+*.log
+.DS_Store
+Thumbs.db

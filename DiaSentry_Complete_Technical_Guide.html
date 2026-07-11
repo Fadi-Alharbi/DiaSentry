@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل التقني والرياضي الشامل - مشروع DiaSentry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #0d9488;
+            --accent: #9333ea;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        /* Cover Page / Header */
+        .header-section {
+            text-align: center;
+            padding-bottom: 50px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 50px;
+        }
+
+        .logo-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            border-right: 6px solid var(--accent);
+            padding-right: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Cards & Highlight Boxes */
+        .highlight-box {
+            background: #f1f5f9;
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .math-box {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            direction: ltr;
+            text-align: left;
+            margin: 20px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        .math-box .comment {
+            color: #94a3b8;
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 5px;
+        }
+
+        .formula {
+            color: #38bdf8;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Workflow Diagram Box */
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .step-content h4 {
+            font-size: 18px;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        /* Print Specifics */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 20px;
+                max-width: 100%;
+            }
+            section {
+                page-break-inside: avoid;
+            }
+            .header-section {
+                padding-top: 50px;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- الغلاف -->
+    <div class="header-section">
+        <span class="logo-tag">DiaSentry Architecture & Technical Book</span>
+        <h1>الدليل التقني والرياضي الشامل لمعمارية ومشروع DiaSentry</h1>
+        <p class="subtitle">مرجع تفصيلي متكامل لشرح سير العمليات (Workflow)، النماذج الرياضية الفيزيولوجية (Bergman Minimal Model)، هندسة الذكاء الاصطناعي متعدد الوكلاء (LangGraph)، ودليل المصطلحات والمكتبات.</p>
+    </div>
+
+    <!-- 1. نبذة عن المشروع -->
+    <section>
+        <h2>1. رؤية المشروع وهندسته العامة</h2>
+        <p>
+            مشروع <strong>DiaSentry</strong> هو منصة طبية استباقية متطورة لإدارة مرض السكري تعتمد على دمج المحاكاة الفيزيولوجية الحيوية للجسم مع الذكاء الاصطناعي التوليدي (Generative AI). يهدف المشروع إلى التغلب على عيوب أجهزة المراقبة التقليدية التي تكتفي بعرض القراءات الحالية، من خلال التنبؤ بمستويات سكر الدم قبل حدوثها بـ 60 دقيقة، وتقديم توصيات علاجية وغذائية فورية تعتمد على البروتوكولات السريرية المعتمدة من الجمعية الأمريكية لمرض السكري (ADA).
+        </p>
+        <div class="highlight-box">
+            <strong>💎 الابتكار الجوهري في المشروع:</strong> يعمل النظام بنمط الحلقة المغلقة الذكية؛ حيث يقوم الخادم الخلفي بمحاكاة مريض حقيقي يبث قراءات حية لمستشعر السكر (CGM) عبر خطوط اتصال سريعة (WebSockets)، لتدخل البيانات في خط أنابيب ذكي يعالج الإشارات، يتنبأ بالمستقبل، ويستدعي قرارات سريرية دقيقة بلحظات.
+        </div>
+    </section>
+
+    <!-- 2. سير العمليات (Workflow) -->
+    <section>
+        <h2>2. خط سير العمليات المتكامل (System Workflow)</h2>
+        <p>
+            للفهم الكامل لكيفية عمل المشروع من الصفر وحتى ظهور البيانات أمام المستهلك، إليك تفصيل رحلة البيانات خطوة بخطوة في كل ثانية:
+        </p>
+
+        <div class="workflow-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>توليد البيانات الحيوية (Virtual CGM Sensor Streamer)</h4>
+                <p>يقوم الخادم الخلفي عبر الملف <code>backend/simulator/streamer.py</code> بتشغيل حلقة لا نهائية تعمل كل 5 ثوانٍ. تستدعي هذه الحلقة محرك المحاكاة الرياضي لحساب تركيز الجلوكوز الحالي، وتضيف إليه ضجيجاً طفيفاً يحاكي واقعية أجهزة القياس الحقيقية، ثم تبثه عبر الـ WebSocket على الرابط <code>/ws/live</code>.</p>
+            </div>
+        </div>
+
+        <div class="workflow-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>وكيل الاستيعاب والتحليل الأولي (Ingestion Agent)</h4>
+                <p>تستلم المحطة الأولى في خط أنابيب LangGraph البيانات الحية. يقوم الوكيل <code>ingestion_agent.py</code> بحساب المشتقة الأولى (معدل تغير السكر في الدقيقة dG/dt)، ويحدد اتجاه سهم النمو (Trend Arrow)، ويحسب نسبة الوقت داخل النطاق الآمن (TIR %)، ويكشف عن أي شذوذ قراءات ناتج عن خلل بالمستشعر.</p>
+            </div>
+        </div>
+
+        <div class="workflow-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>وكيل التنبؤ الاستباقي (Predictive Agent)</h4>
+                <p>تنتقل حزمة البيانات إلى <code>predictive_agent.py</code>، والذي يقوم بتشغيل استيفاء رياضي سريع لمحاكاة الـ 60 دقيقة القادمة. يحدد الوكيل ما إذا كان المريض سيتعرض لهبوط سكر حاد (Hypoglycemia) أو ارتفاع مفرط (Hyperglycemia) خلال الساعة القادمة مع إعطاء مؤشر ثقة التوقع (Confidence score).</p>
+            </div>
+        </div>
+
+        <div class="workflow-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>وكيل التوصيات السريرية وحلقة التفكير (Recommendation Agent & ReAct)</h4>
+                <p>إذا اكتشف النظام حالة طوارئ أو استدعى التدخل، يعمل الوكيل <code>recommendation_agent.py</code> المدعوم بنموذج الذكاء الاصطناعي (مثل Qwen-Plus). يستخدم الوكيل حلقة التفكير والتصرف (ReAct Loop)؛ حيث يبحث أولاً في قاعدة البيانات المتجهية (ChromaDB) لاسترجاع بروتوكولات ADA المناسبة للحالة، ويحسب جرعة الكربوهيدرات السريعة المطلوبة، ثم يصدر وصفة طبية منسقة (باللغتين العربية والإنجليزية).</p>
+            </div>
+        </div>
+
+        <div class="workflow-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>التحديث اللحظي للواجهة الأمامية (Interactive PWA Frontend)</h4>
+                <p>تصل الحزمة النهائية للواجهة الأمامية المبرمجة بـ React & Vite. تتحدث عدادات السكر التفاعلية، ويرسم المخطط البياني (GlucoseChart) المسار التاريخي والتوقعي، وتظهر كروت التوصيات السريرية فوراً للمستخدم وبدون أي إعادة تحميل للصفحة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. الجزء الرياضي والفيزيائي المفصل -->
+    <section>
+        <h2>3. التفكيك الرياضي والفيزيائي الكامل للمشروع</h2>
+        <p>
+            القلب النابض لمشروع DiaSentry هو محاكاة فسيولوجية دقيقة تعتمد على النموذج الرياضي الشهير في الهندسة الطبية: <strong>نموذج بيرجمان الأصغر (Bergman Minimal Model)</strong>، مدمجاً مع نموذج لامتصاص وجبات الطعام ومحاكاة لضجيج المستشعرات.
+        </p>
+
+        <h3>أولاً: المتغيرات الفسيولوجية الأساسية (State Variables)</h3>
+        <p>يصف النموذج حالة جسم مريض السكري في أي لحظة زمنية $t$ عبر ثلاثة متغيرات رئيسية:</p>
+        <ul>
+            <li><strong>$G(t)$:</strong> تركيز الجلوكوز في بلازما الدم (بمقاس mg/dL). القيمة الطبيعية المستهدفة حوالي 100 ملغ/ديسيلتر.</li>
+            <li><strong>$X(t)$:</strong> تأثير الأنسولين الفعّال داخل الأنسجة الخلوية (Remote Insulin Action)، وهو المتغير الذي يمثل مدى فتح الأنسولين لبوابات الخلايا لامتصاص السكر (بمقاس $\text{min}^{-1}$).</li>
+            <li><strong>$I(t)$:</strong> تركيز الأنسولين الفعلي في بلازما الدم (بمقاس $\mu\text{U}/mL$).</li>
+        </ul>
+
+        <h3>ثانياً: منظومة المعادلات التفاضلية (Differential Equations)</h3>
+        <p>يتم تمثيل التفاعل الديناميكي بين الجلوكوز والأنسولين وثلاث معادلات تفاضلية مترابطة موجودة داخل الملف <code>backend/simulator/models.py</code>:</p>
+
+        <div class="math-box">
+            <span class="comment">1. معادلة تغير الجلوكوز في الدم (Glucose Kinetics Equation):</span>
+            <div class="formula">dG/dt = -(p₁ + X(t)) × G(t) + p₁ × G_b + Ra(t)</div>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px;">
+                • <strong>$p_1$:</strong> معدل استهلاك الجلوكوز الذاتي في الدماغ والأعصاب (بدون الحاجة لأنسولين).<br>
+                • <strong>$X(t) \cdot G(t)$:</strong> معدل استهلاك الجلوكوز في العضلات والخلايا الدهنية بمساعدة الأنسولين الفعّال.<br>
+                • <strong>$p_1 \cdot G_b$:</strong> إنتاج الجلوكوز الأساسي من الكبد للحفاظ على الحياة ($G_b$ هو السكر الأساسي).<br>
+                • <strong>$Ra(t)$:</strong> معدل وصول الجلوكوز الجديد للدم نتيجة امتصاص وجبات الطعام (Rate of Appearance).
+            </p>
+        </div>
+
+        <div class="math-box">
+            <span class="comment">2. معادلة تأثير الأنسولين في الأنسجة (Remote Insulin Action):</span>
+            <div class="formula">dX/dt = -p₂ × X(t) + p₃ × (I(t) - I_b)</div>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px;">
+                • <strong>$p_2$:</strong> معدل تحلل واضمحلال تأثير الأنسولين داخل الأنسجة الخلوية.<br>
+                • <strong>$p_3$:</strong> معامل حساسية الأنسجة للأنسولين (Insulin Sensitivity Factor). كلما زاد، زادت استجابة الخلايا لحرق السكر.<br>
+                • <strong>$I_b$:</strong> مستوى الأنسولين الأساسي الطبيعي في الدم.
+            </p>
+        </div>
+
+        <div class="math-box">
+            <span class="comment">3. معادلة تركيز الأنسولين في الدم (Plasma Insulin Kinetics):</span>
+            <div class="formula">dI/dt = -n × (I(t) - I_b) + U_in(t) / V_i</div>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px;">
+                • <strong>$n$:</strong> معدل تصفية الكلى والكبد للأنسولين من الدم (Clearance Rate).<br>
+                • <strong>$U_{in}(t)$:</strong> جرعة الأنسولين المحقونة للمريض (سواء عبر حقن سريع أو مضخة).<br>
+                • <strong>$V_i$:</strong> حجم توزيع الأنسولين في سوائل الجسم (Insulin Distribution Volume).
+            </p>
+        </div>
+
+        <h3>ثالثاً: نموذج امتصاص الطعام والمؤشر السكري (Gut Meal Absorption Model)</h3>
+        <p>عندما يأكل المريض وجبة تحتوي على كربوهيدرات، لا يدخل السكر للدم دفعة واحدة. نستخدم نموذج غرفتين (Two-Compartment Model) لمحاكاة مرور الطعام من المعدة إلى الأمعاء ثم الدم:</p>
+        <div class="math-box">
+            <span class="comment">معادلات الهضم ومعدل الامتصاص Ra(t):</span>
+            <div class="formula">dQ₁/dt = -Q₁ / τ_m &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; dQ₂/dt = (Q₁ - Q₂) / τ_m</div>
+            <div class="formula">Ra(t) = (f × Q₂ × 1000) / (V_g × τ_m)</div>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px;">
+                • <strong>$Q_1, Q_2$:</strong> كمية الكربوهيدرات في المعدة والأمعاء على التوالي.<br>
+                • <strong>$\tau_m$:</strong> ثابت الزمن للهضم (Time Constant)، ويعتمد مباشرة على <strong>المؤشر السكري (Glycemic Index - GI)</strong>؛ فالأطعمة ذات المؤشر المرتفع (مثل البيتزا والعصير) تمتلك $\tau_m$ قصير فيرتفع السكر بسرعة فائقة.<br>
+                • <strong>$f$:</strong> التوافر الحيوي (Bioavailability fraction) ويمثل نسبة الكربوهيدرات التي تتحول فعلياً لجلوكوز.
+            </p>
+        </div>
+
+        <h3>رابعاً: التكامل العددي رانجا-كوتا (Runge-Kutta 4th Order - RK4)</h3>
+        <p>بما أن هذه المعادلات التفاضلية معقدة ومترابطة ولا يمكن حلها بصيغة جبرية بسيطة، يستخدم محركنا البرمجي في <code>models.py</code> خوارزمية <strong>Runge-Kutta من الرتبة الرابعة (RK4)</strong> للانتقال من الزمن $t$ إلى $t + \Delta t$. تقوم الخوارزمية بحساب 4 أميال تجريبية ($k_1, k_2, k_3, k_4$) وأخذ متوسطها المرجح لضمان دقة متناهية تتفوق على طريقة أويلر (Euler method) وتمنع تراكم الخطأ البرمجي.</p>
+
+        <h3>خامساً: محاكاة ضجيج المستشعر (Sensor Noise Injection)</h3>
+        <p>المستشعرات الحقيقية مثل Dexcom G6 لا تعطي قراءة مثالية بنسبة 100%، بل تحتوي على تشويش وتأخير في السائل الخلوي (ISF Lag). نحاكي ذلك رياضياً كالتالي:</p>
+        <div class="math-box">
+            <span class="comment">معادلة قراءة المستشعر الحية التي تراها في الشاشة:</span>
+            <div class="formula">G_sensor = G_true(t - lag) + N(0, σ²) + drift(t)</div>
+            <p style="color: #cbd5e1; font-size: 14px; margin-top: 10px;">
+                حيث نضيف ضجيجاً غاوسياً $\mathcal{N}(0, \sigma^2)$ مع انحراف بطيء جداً $drift$ لمحاكاة تقادم المستشعر بعد أيام من استخدامه.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. شرح المكتبات والتقنيات البرمجية -->
+    <section>
+        <h2>4. الحزمة التقنية وشرح المكتبات المستخدمة (Tech Stack & Libraries)</h2>
+        <p>تم اختيار كل مكتبة في هذا المشروع بعناية فائقة لخدمة هدف سريري وهندسي محدد. إليك جدول تفصيلي لكافة المكتبات ودورها الدقيق في المشروع:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>المكتبة / التقنية</th>
+                    <th>القسم</th>
+                    <th>الشرح والوظيفة داخل مشروع DiaSentry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>FastAPI</strong></td>
+                    <td>الخادم الخلفي (Backend)</td>
+                    <td>إطار عمل Python فائق السرعة يدعم البرمجة غير المتزامنة (Asynchronous). يُستخدم لبناء نقاط الـ REST API وإدارة قنوات الاتصال ثنائية الاتجاه عبر الـ WebSockets لبث القراءات الحية.</td>
+                </tr>
+                <tr>
+                    <td><strong>Uvicorn</strong></td>
+                    <td>الخادم الخلفي (Backend)</td>
+                    <td>خادم تشغيل ويب (ASGI Server) يقوم بتشغيل تطبيق FastAPI بكفاءة عالية وقدرة على معالجة آلاف الاتصالات المتزامنة.</td>
+                </tr>
+                <tr>
+                    <td><strong>LangGraph</strong></td>
+                    <td>الذكاء الاصطناعي (AI Workflow)</td>
+                    <td>مكتبة متطورة لبناء تدفقات وكلاء الذكاء الاصطناعي المعتمدة على الحالة (Stateful Multi-Agent Workflow). تنظم الانتقال السلس بين وكيل الاستيعاب، وكيل التنبؤ، ووكيل التوصيات.</td>
+                </tr>
+                <tr>
+                    <td><strong>LangChain & OpenAI SDK</strong></td>
+                    <td>الذكاء الاصطناعي (AI Engine)</td>
+                    <td>الأدوات البرمجية للاتصال بالنماذج اللغوية الكبيرة (LLMs مثل Qwen و GPT). تتيح ميزة استدعاء الدوال البرمجية (Function Calling) لتمكين الوكيل من سحب البيانات الرياضية والسريرية.</td>
+                </tr>
+                <tr>
+                    <td><strong>ChromaDB</strong></td>
+                    <td>قاعدة المعارف (RAG Database)</td>
+                    <td>قاعدة بيانات متجهية (Vector Database). تقوم بتخزين إرشادات الجمعية الأمريكية لمرض السكري (ADA Guidelines) على شكل متجهات رقمية، وتتيح البحث الدلالي السريع لإدراج التوصيات الطبية في إجابات الذكاء الاصطناعي.</td>
+                </tr>
+                <tr>
+                    <td><strong>NumPy & SciPy</strong></td>
+                    <td>المحرك الرياضي (Simulator)</td>
+                    <td>مكتبات الحسابات العلمية والهندسية في بايثون. تُستخدم لمعالجة المصفوفات الرياضية وتنفيذ التكامل العددي لمعادلات بيرجمان وتوليد الضجيج الغاوسي الدقيق.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pydantic & Settings</strong></td>
+                    <td>التحقق والإعدادات</td>
+                    <td>مكتبة لضمان سلامة هيكل البيانات البرمجية المدخلة والمخرجة (Data Validation) وحماية النظام من الانهيار عند استقبال بيانات غير متوقعة.</td>
+                </tr>
+                <tr>
+                    <td><strong>React 18 & TypeScript</strong></td>
+                    <td>الواجهة الأمامية (Frontend)</td>
+                    <td>مكتبة بناء واجهات المستخدم الحديثة مع كتابة كود صارم ومحدد الأنواع (TypeScript) لضمان خلو التطبيق من أخطاء وقت التشغيل (Runtime errors).</td>
+                </tr>
+                <tr>
+                    <td><strong>Vite</strong></td>
+                    <td>بناء الواجهة (Build Tool)</td>
+                    <td>محرك بناء وتطوير واجهات الجيل الجديد، يوفر تحديثاً لحظياً للشاشة عند تعديل الكود (Hot Module Replacement - HMR) بسرعة فائقة.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tailwind CSS & Lucide</strong></td>
+                    <td>التصميم والمظهر (UI/UX)</td>
+                    <td>إطار عمل CSS متطور لبناء تصميم عصري جذاب يعتمد على التأثيرات الزجاجية (Glassmorphism) والألوان المتدرجة الهادئة مع أيقونات طبية متناسقة.</td>
+                </tr>
+                <tr>
+                    <td><strong>Recharts</strong></td>
+                    <td>الرسم البياني (Charts)</td>
+                    <td>مكتبة متخصصة لرسم المخططات البيانية التفاعلية داخل React. مسؤولة عن رسم منحنى الجلوكوز التاريخي والأفق التوقعي بسلاسة.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 5. دليل المصطلحات التقنية والطبية -->
+    <section>
+        <h2>5. موسوعة المصطلحات التقنية والسريرية (Comprehensive Glossary)</h2>
+        <p>كي تكون ملماً بكل كلمة تتردد في الكود أو في المحادثات الطبية، قمنا بتصنيف أهم المصطلحات وشرحها بأسلوب مبسط:</p>
+
+        <h3>أولاً: المصطلحات السريرية والفسيولوجية (Clinical & Physiological Terms)</h3>
+        <div class="highlight-box">
+            • <strong>CGM (Continuous Glucose Monitor):</strong> جهاز المراقبة المستمرة للجلوكوز. مستشعر يُثبت تحت الجلد لقياس سكر السائل الخلوي كل بضع دقائق وبثه للهاتف.<br><br>
+            • <strong>TIR (Time In Range):</strong> نسبة الوقت داخل النطاق الآمن. المعيار الذهبي الحديث في طب السكري؛ ويمثل النسبة المئوية للوقت الذي يبقى فيه سكر المريض بين (70 إلى 180 ملغ/ديسيلتر). كلما زادت النسبة عن 70%، كان التحكم ممتازاً.<br><br>
+            • <strong>IOB (Insulin On Board):</strong> الأنسولين النشط في الجسم. كمية الأنسولين التي تم حقنها مؤخراً وما زالت تعمل داخل الأنسجة ولم تنتهِ فعاليتها بعد.<br><br>
+            • <strong>Insulin Stacking (تكدس الأنسولين):</strong> خطأ خطير يقع فيه المرضى بحقن جرعة أنسولين تصحيحية ثانية قبل أن تنتهي فعالية الجرعة الأولى (IOB)، مما يؤدي لهبوط سكر حاد ومفاجئ.<br><br>
+            • <strong>ISF (Insulin Sensitivity Factor):</strong> معامل حساسية الأنسولين. مقدار انخفاض سكر الدم (بالميلليغرام) عند حقن وحدة أنسولين واحدة.<br><br>
+            • <strong>Glycemic Index - GI (المؤشر السكري):</strong> مقياس تصنيف الأطعمة من 0 إلى 100 حسب سرعة رفعها لسكر الدم. السكر والعصير (GI > 70) يرفعان السكر فوراً، بينما الشوفان والخضروات (GI منخفض) ترفعه ببطء.<br><br>
+            • <strong>Rule of 15 (قاعدة 15 لعلاج الهبوط):</strong> بروتوكول طبي عالمي لعلاج هبوط السكر؛ ينص على تناول 15 غرام من الكربوهيدرات السريعة (مثل نصف كوب عصير)، والانتظار 15 دقيقة، ثم إعادة القياس.
+        </div>
+
+        <h3>ثانياً: المصطلحات الهندسية والبرمجية (Software & AI Terms)</h3>
+        <div class="highlight-box">
+            • <strong>RAG (Retrieval-Augmented Generation):</strong> التوليد المعزز بالاسترجاع. تقنية تجعل الذكاء الاصطناعي يبحث في كتب ومستندات موثوقة (مثل إرشادات ADA الطبيعية) قبل أن يجيب، لمنع الهلوسة الطبية.<br><br>
+            • <strong>ReAct Loop (Reasoning + Acting):</strong> حلقة التفكير والتصرف. نمط برمجي للذكاء الاصطناعي يجعله يفكر في المشكلة، يقرر استخدام أداة (مثل أداة حساب الكربوهيدرات)، يقرأ النتيجة، ثم يصدر قراره النهائي.<br><br>
+            • <strong>Vector Embeddings (التضمينات المتجهية):</strong> تحويل النصوص والفقرات الطبية إلى أرقام وإحداثيات في فضاء رياضي متعدد الأبعاد، مما يسمح للكمبيوتر بفهم المعنى والدلالة وليس مجرد تطابق الكلمات.<br><br>
+            • <strong>WebSocket Streaming:</strong> بروتوكول اتصال دائم ومفتوح بين المتصفح والخادم، يسمح للخادم بـ "دفع" القراءات الحية للشاشة كل ثانية بدون أن يضطر المتصفح لطلبها في كل مرة.<br><br>
+            • <strong>HMR (Hot Module Replacement):</strong> التحديث اللحظي للوحدات. ميزة في Vite تجعل أي تعديل في كود البرمجة ينعكس فوراً على متصفحك أو جوالك دون فقدان حالة المحادثة أو إعادة تحميل الصفحة.<br><br>
+            • <strong>PWA (Progressive Web App):</strong> تطبيق الويب التقدمي. تقنية تجعل موقع الويب يعمل ويبدو وكأنه تطبيق جوال حقيقي، مع إمكانية تثبيته على شاشة الهاتف التفاعلية.
+        </div>
+    </section>
+
+    <!-- خاتمة -->
+    <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--border); color: var(--text-muted); font-size: 14px;">
+        تم إعداد هذا الدليل التقني والمرجع الرياضي بواسطة <strong>Antigravity AI Companion</strong> خصيصاً لمشروع <strong>DiaSentry</strong>.<br>
+        جميع الحقوق والمعادلات محفوظة داخل البنية البرمجية للمشروع &copy; 2026.
+    </div>
+
+</div>
+
+</body>
+</html>

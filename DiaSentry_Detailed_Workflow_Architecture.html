@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المخطط التفصيلي وسير العمليات الشامل - مشروع DiaSentry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0d9488;
+            --accent: #7c3aed;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #334155;
+            --border: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        /* Header */
+        .header-section {
+            text-align: center;
+            padding-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 6px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            border-right: 6px solid var(--accent);
+            padding-right: 15px;
+            margin: 40px 0 25px 0;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Flowchart Visual Cards */
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .flow-box {
+            background: #ffffff;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 25px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+            position: relative;
+        }
+
+        .flow-box.ai-layer {
+            border-color: var(--accent);
+            background: #faf5ff;
+        }
+
+        .flow-box.ui-layer {
+            border-color: var(--secondary);
+            background: #f0fdf4;
+        }
+
+        .flow-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flow-title span {
+            font-size: 14px;
+            background: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: #475569;
+        }
+
+        .flow-arrow {
+            font-size: 30px;
+            color: var(--primary);
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        /* Sub-nodes inside AI box */
+        .sub-nodes {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .sub-node {
+            background: white;
+            border: 1px solid #ddd6fe;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .sub-node h4 {
+            color: var(--accent);
+            font-size: 16px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #f3e8ff;
+            padding-bottom: 5px;
+        }
+
+        /* Deep Dive Cards */
+        .stage-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-right: 6px solid var(--primary);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .stage-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .stage-files {
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            background: #e2e8f0;
+            color: #1e293b;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .code-inline {
+            font-family: 'Fira Code', monospace;
+            background: #f1f5f9;
+            color: #c026d3;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        ul {
+            margin-right: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        /* Print formatting */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; padding: 20px; max-width: 100%; }
+            .flow-box, .stage-card { page-break-inside: avoid; }
+            .sub-nodes { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-section">
+        <span class="badge">DiaSentry System Workflow & Architecture</span>
+        <h1>المخطط الهندسي الدقيق وسير العمليات التفصيلي لمشروع DiaSentry</h1>
+        <p class="subtitle">وثيقة تقنية متكاملة تشرح كيفية تكامل المحرك الرياضي (Bergman Model) وخادم البث اللحظي (WebSockets) وخط أنابيب وكلاء الذكاء الاصطناعي (LangGraph) والواجهة الأمامية في نظام تفاعلي متزامن.</p>
+    </div>
+
+    <!-- 1. المخطط البصري لسير العمليات -->
+    <h2>1. المخطط الهيكلي لتدفق البيانات اللحظي (Data Flow Diagram)</h2>
+    <p>يوضح الرسم البياني التالي كيف تنتقل إشارة القياس الحيوية في أجزاء من الثانية من مرحلة الحساب الرياضي حتى تظهر كتوصية سريرية أمام المستخدم:</p>
+
+    <div class="flow-container">
+        
+        <!-- المحرك -->
+        <div class="flow-box">
+            <div class="flow-title">1. المحرك الفيزيولوجي الحيوي (Virtual CGM Sensor) <span>NumPy / SciPy</span></div>
+            <p>حل المعادلات التفاضلية لنموذج بيرجمان عبر التكامل العددي <span class="code-inline">Runge-Kutta RK4</span> وحساب التركيز الحقيقي للجلوكوز، مع حقن ضجيج غاوسي <span class="code-inline">Gaussian Noise</span> لمحاكاة مستشعرات الديكسكوم.</p>
+        </div>
+
+        <div class="flow-arrow">↓</div>
+
+        <!-- البث -->
+        <div class="flow-box">
+            <div class="flow-title">2. خادم البث والاتصال غير المتزامن (Backend Streamer) <span>FastAPI / Uvicorn</span></div>
+            <p>حلقة تعمل كل 5 ثوانٍ لجلب القراءة الجديدة، سحب تاريخ القراءات <span class="code-inline">get_recent_readings()</span>، وتشغيل خط أنابيب الذكاء الاصطناعي في مسار مستقل للذاكرة عبر <span class="code-inline">asyncio.to_thread</span>.</p>
+        </div>
+
+        <div class="flow-arrow">↓</div>
+
+        <!-- الذكاء الاصطناعي -->
+        <div class="flow-box ai-layer">
+            <div class="flow-title" style="color: var(--accent);">3. خط أنابيب الذكاء الاصطناعي متعدد الوكلاء (LangGraph StateGraph) <span>LangChain / Qwen / ChromaDB</span></div>
+            <p>تغليف البيانات في هيكل <span class="code-inline">AgentState</span> متضمنة مصفوفة <span class="code-inline">history_buffer</span> لآخر 6 ساعات، وتمريرها عبر ثلاث محطات ذكية متتالية:</p>
+            
+            <div class="sub-nodes">
+                <div class="sub-node">
+                    <h4>أ. وكيل الاستيعاب (Ingestion)</h4>
+                    • حساب المشتقة الأولى dG/dt<br>
+                    • تحديد سهم الاتجاه (↑→↓)<br>
+                    • حساب نسبة النطاق TIR%<br>
+                    • كشف شذوذ القراءات
+                </div>
+                <div class="sub-node">
+                    <h4>ب. وكيل التنبؤ (Predictive)</h4>
+                    • محاكاة مسار 60 دقيقة قادمة<br>
+                    • كشف إنذار الهبوط Hypo<br>
+                    • كشف إنذار الارتفاع Hyper<br>
+                    • تحديد درجة ثقة التوقع
+                </div>
+                <div class="sub-node">
+                    <h4>ج. وكيل القرار (Recommendation)</h4>
+                    • تشغيل حلقة تفكير ReAct<br>
+                    • استرجاع إرشادات ADA عبر RAG<br>
+                    • حاسبة كربوهيدرات Rule of 15<br>
+                    • إصدار وصفة سريرية منسقة
+                </div>
+            </div>
+        </div>
+
+        <div class="flow-arrow">↓</div>
+
+        <!-- الواجهة -->
+        <div class="flow-box ui-layer">
+            <div class="flow-title" style="color: var(--secondary);">4. العرض التفاعلي اللحظي (Interactive PWA Frontend) <span>React 18 / Vite / Recharts</span></div>
+            <p>استقبال حزمة البيانات الكاملة عبر مقبس الويب <span class="code-inline">ws://.../ws/live</span>، وتحديث الرسوم البيانية وبطاقات التوصيات الطبية على شاشة المريض أو الطبيب دون أي إعادة تحميل للصفحة.</p>
+        </div>
+
+    </div>
+
+    <!-- 2. التفصيل التقني الدقيق للمراحل الست -->
+    <h2>2. التشريح التقني الدقيق لدورة الحياة (Lifecycle Deep Dive)</h2>
+    <p>فيما يلي تفصيل تفاعلي لما يحدث برمجياً داخل المعالج والذاكرة في كل ثانية تشغيل للمشروع:</p>
+
+    <!-- مرحلة 1 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 1: المحاكاة الرياضية وتوليد الإشارة الحيوية</span>
+            <span class="stage-files">models.py | engine.py | streamer.py</span>
+        </div>
+        <p>يبدأ تدفق البيانات من غرفة المحرك الرياضي:</p>
+        <ul>
+            <li>تقوم حلقة الخادم في الدالة <span class="code-inline">streamer._stream_loop()</span> بطلب خطوة محاكاة جديدة كل 5 ثوانٍ باستدعاء <span class="code-inline">engine.step()</span>.</li>
+            <li>يستدعي المحرك الصنف <span class="code-inline">BergmanMinimalModel</span> لحل 3 معادلات تفاضلية للدم والأنسجة باستخدام خوارزمية التكامل <span class="code-inline">Runge-Kutta 4th Order (RK4)</span> لضمان دقة فيزيولوجية تمنع الانحراف التراكمي.</li>
+            <li>يتم تطبيق دالة التشويش <span class="code-inline">np.random.normal(0, sigma)</span> لدمج ضجيج واقعي مع تأخير في السائل الخلوي (<span class="code-inline">ISF Lag</span>) لمحاكاة قراءة مستشعر حقيقي.</li>
+        </ul>
+    </div>
+
+    <!-- مرحلة 2 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 2: تجهيز الحالة وتشغيل خط أنابيب LangGraph</span>
+            <span class="stage-files">workflow.py | state.py</span>
+        </div>
+        <p>تنتقل القراءة الخام من المحرك إلى العقل البرمجي المدبّر:</p>
+        <ul>
+            <li>يتم استدعاء الدالة <span class="code-inline">run_agent_pipeline</span> التي تقوم بسحب سجل آخر 72 قراءة (سجل 6 ساعات تاريخية) وبناء مصفوفة القواميس <span class="code-inline">history_buffer</span>.</li>
+            <li>يتم تجميع المتغيرات الحيوية (الجلوكوز الحالي، الأنسولين النشط IOB، وحالة التمرين الرياضي) في بنية بيانات موحدة ومحكمة عبر Pydantic تسمى <span class="code-inline">AgentState</span>.</li>
+            <li>يتم إدخال هذا القاموس إلى شبكة الوكلاء المجمعة عبر <span class="code-inline">StateGraph</span> للانتقال التلقائي من وكيل لآخر.</li>
+        </ul>
+    </div>
+
+    <!-- مرحلة 3 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 3: التحليل الرياضي والاستيعاب (Ingestion Node)</span>
+            <span class="stage-files">ingestion_agent.py</span>
+        </div>
+        <p>المحطة الأولى في الذكاء الاصطناعي لفحص وتصنيف الإشارة:</p>
+        <ul>
+            <li>التحقق من سلامة النطاق الحيوي للقراءة (بين 30 و 500 ملغ/د) لتفادي أخطاء المستشعرات التالفة.</li>
+            <li>حساب سرعة تغير السكر في الدقيقة (<span class="code-inline">dG/dt</span>) عبر حساب المتوسط المرجح لآخر 4 قراءات، لتجنب الذبذبات الوهمية.</li>
+            <li>تحديد اتجاه سهم النمو الطائفي حسب المعايير الطبية: صاعد بقوة <span class="code-inline">↑↑</span>، صاعد <span class="code-inline">↑</span>، مستقر <span class="code-inline">→</span>، أو هابط <span class="code-inline">↓↓</span>.</li>
+            <li>حساب نسبة الوقت داخل النطاق الآمن (<span class="code-inline">TIR %</span>) لحصر نسبة القراءات الواقعة بين 70 و 180 ملغ/د.</li>
+            <li>كشف الشذوذ: فحص ما إذا كان السكر يتغير بسرعة تفوق 2 ملغ/دقيقة دون وجود وجبة أو جرعة أنسولين مسجلة في آخر 30 دقيقة لإصدار تحذير شذوذ في الحركية.</li>
+        </ul>
+    </div>
+
+    <!-- مرحلة 4 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 4: التنبؤ الاستباقي بالمستقبل (Predictive Node)</span>
+            <span class="stage-files">predictive_agent.py</span>
+        </div>
+        <p>استشراف المستقبل قبل وقوع الطوارئ السريرية:</p>
+        <ul>
+            <li>يعمل الوكيل على تحليل الزخم الحالي والأنسولين المتبقي في الجسم لعمل استيفاء رياضي للأفق الزمني على بعد 60 دقيقة.</li>
+            <li>يقوم بتفعيل رايات الخطر المسبق: <span class="code-inline">predicted_hypo</span> (توقع هبوط سكر قادم) أو <span class="code-inline">predicted_hyper</span> (توقع ارتفاع قادم).</li>
+            <li>يحدد مؤشر الثقة الرياضية للتوقع (<span class="code-inline">HIGH / MEDIUM / LOW</span>) بناءً على استقرار القراءات السابقة.</li>
+        </ul>
+    </div>
+
+    <!-- مرحلة 5 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 5: القرار السريري وحلقة التفكير (Recommendation & ReAct)</span>
+            <span class="stage-files">recommendation_agent.py | RAG ChromaDB</span>
+        </div>
+        <p>تدخل الذكاء الاصطناعي التوليدي (LLM) لاتخاذ قرار دقيق وموثوق:</p>
+        <ul>
+            <li>عند رصد خطر سريري، يتم تنشيط وكيل القرار المدعوم بنموذج <span class="code-inline">Qwen-Plus</span> عبر واجهة LangChain.</li>
+            <li>يطبق الوكيل نمط التفكير والتصرف <span class="code-inline">ReAct Loop</span>؛ حيث يقوم أولاً باستدعاء أداة البحث الدلالي <span class="code-inline">search_clinical_guidelines</span> لسحب البروتوكولات الرسمية للجمعية الأمريكية لمرض السكري (ADA) من قاعدة <span class="code-inline">ChromaDB</span>.</li>
+            <li>في حالات الهبوط، يستدعي دالة <span class="code-inline">calculate_correction_carbs</span> لحساب جرامات الكربوهيدرات السريعة المطلوبة لإنقاذ المريض بدقة تطبيقاً لـ <span class="code-inline">Rule of 15</span>.</li>
+            <li>يصدر الوصفة السريرية النهائية منسقة باللغتين العربية والإنجليزية وخالية تماماً من رموز الماركداون أو النجمات.</li>
+        </ul>
+    </div>
+
+    <!-- مرحلة 6 -->
+    <div class="stage-card">
+        <div class="stage-header">
+            <span class="stage-title">المرحلة 6: البث اللحظي والعرض المرئي التفاعلي</span>
+            <span class="stage-files">main.py | React Components</span>
+        </div>
+        <p>وصول البيانات للمريض وتحديث الشاشة في أجزاء من الثانية:</p>
+        <ul>
+            <li>يقوم الخادم بتغليف مخرجات الوكلاء في حزمة JSON وبثها فوراً عبر مقبس الويب التفاعلي <span class="code-inline">ws://0.0.0.0:8000/ws/live</span>.</li>
+            <li>يلتقط متصفح الهاتف أو الكمبيوتر الحزمة، وتقوم مكتبة <span class="code-inline">Recharts</span> برسم المنحنى التاريخي والتوقعي بسلاسة فائقة.</li>
+            <li>تتحدث عدادات السكر وبطاقات التوصية الزجاجية فوراً دون الحاجة لإعادة تحميل الصفحة (<span class="code-inline">Zero Page Reload</span>).</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 14px;">
+        وثيقة المخطط الهندسي الدقيق وسير العمليات الشامل لمشروع <strong>DiaSentry</strong> &copy; 2026.
+    </div>
+
+</div>
+
+</body>
+</html>
